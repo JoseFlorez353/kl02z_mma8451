@@ -37,7 +37,7 @@
  * Public Prototypes
  ******************************************************************************/
 
-/** @} */ // end of X group
-/** @} */ // end of X group
+/** @} */ // end of GPIO group
+/** @} */ // end of HAL group
 
 #endif /* SDK_HAL_GPIO_H_ */

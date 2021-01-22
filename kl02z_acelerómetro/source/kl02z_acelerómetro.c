@@ -29,7 +29,7 @@
  */
  
 /**
- * @file    MKL02Z32xxx4_Project1.c
+ * @file    kl02z_acelerómetro.c
  * @brief   Application entry point.
  */
 #include <stdio.h>

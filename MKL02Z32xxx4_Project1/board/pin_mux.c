@@ -30,38 +30,46 @@ board: FRDM-KL02Z
  * END ****************************************************************************************************************/
 void BOARD_InitBootPins(void)
 {
-    BOARD_InitPins();
+    BOARD_I20pins();
     LEDS_CONFIGURACI();
 }
 
 /* clang-format off */
 /*
  * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
-BOARD_InitPins:
+BOARD_I20pins:
 - options: {callFromInitBoot: 'true', coreID: core0, enableClock: 'true'}
 - pin_list:
   - {pin_num: '17', peripheral: UART0, signal: TX, pin_signal: ADC0_SE5/CMP0_IN3/PTB1/IRQ_6/UART0_TX/UART0_RX}
   - {pin_num: '18', peripheral: UART0, signal: RX, pin_signal: ADC0_SE4/PTB2/IRQ_7/UART0_RX/UART0_TX}
+  - {pin_num: '23', peripheral: I2C0, signal: SCL, pin_signal: PTB3/IRQ_10/I2C0_SCL/UART0_TX}
+  - {pin_num: '24', peripheral: I2C0, signal: SDA, pin_signal: PTB4/IRQ_11/I2C0_SDA/UART0_RX}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 /* clang-format on */
 
 /* FUNCTION ************************************************************************************************************
  *
- * Function Name : BOARD_InitPins
+ * Function Name : BOARD_I20pins
  * Description   : Configures pin routing and optionally pin electrical features.
  *
  * END ****************************************************************************************************************/
-void BOARD_InitPins(void)
+void BOARD_I20pins(void)
 {
     /* Port B Clock Gate Control: Clock enabled */
     CLOCK_EnableClock(kCLOCK_PortB);
 
     /* PORTB1 (pin 17) is configured as UART0_TX */
-    PORT_SetPinMux(BOARD_INITPINS_DEBUG_UART0_TX_PORT, BOARD_INITPINS_DEBUG_UART0_TX_PIN, kPORT_MuxAlt2);
+    PORT_SetPinMux(BOARD_I20PINS_DEBUG_UART0_TX_PORT, BOARD_I20PINS_DEBUG_UART0_TX_PIN, kPORT_MuxAlt2);
 
     /* PORTB2 (pin 18) is configured as UART0_RX */
-    PORT_SetPinMux(BOARD_INITPINS_DEBUG_UART0_RX_PORT, BOARD_INITPINS_DEBUG_UART0_RX_PIN, kPORT_MuxAlt2);
+    PORT_SetPinMux(BOARD_I20PINS_DEBUG_UART0_RX_PORT, BOARD_I20PINS_DEBUG_UART0_RX_PIN, kPORT_MuxAlt2);
+
+    /* PORTB3 (pin 23) is configured as I2C0_SCL */
+    PORT_SetPinMux(BOARD_I20PINS_ACCEL_SCL_PORT, BOARD_I20PINS_ACCEL_SCL_PIN, kPORT_MuxAlt2);
+
+    /* PORTB4 (pin 24) is configured as I2C0_SDA */
+    PORT_SetPinMux(BOARD_I20PINS_ACCEL_SDA_PORT, BOARD_I20PINS_ACCEL_SDA_PIN, kPORT_MuxAlt2);
 
     SIM->SOPT5 = ((SIM->SOPT5 &
                    /* Mask bits to zero which are setting */

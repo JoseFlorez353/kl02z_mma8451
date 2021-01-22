@@ -32,25 +32,43 @@ void BOARD_InitBootPins(void);
   @{ */
 
 /* Symbols to be used with PORT driver */
-#define BOARD_INITPINS_DEBUG_UART0_TX_PORT PORTB               /*!<@brief PORT peripheral base pointer */
-#define BOARD_INITPINS_DEBUG_UART0_TX_PIN 1U                   /*!<@brief PORT pin number */
-#define BOARD_INITPINS_DEBUG_UART0_TX_PIN_MASK (1U << 1U)      /*!<@brief PORT pin mask */
-                                                               /* @} */
+#define BOARD_I20PINS_DEBUG_UART0_TX_PORT PORTB               /*!<@brief PORT peripheral base pointer */
+#define BOARD_I20PINS_DEBUG_UART0_TX_PIN 1U                   /*!<@brief PORT pin number */
+#define BOARD_I20PINS_DEBUG_UART0_TX_PIN_MASK (1U << 1U)      /*!<@brief PORT pin mask */
+                                                              /* @} */
 
 /*! @name PORTB2 (number 18), J8[1]/ADC0_SE4/UART0_RX/UART0_TX
   @{ */
 
 /* Symbols to be used with PORT driver */
-#define BOARD_INITPINS_DEBUG_UART0_RX_PORT PORTB               /*!<@brief PORT peripheral base pointer */
-#define BOARD_INITPINS_DEBUG_UART0_RX_PIN 2U                   /*!<@brief PORT pin number */
-#define BOARD_INITPINS_DEBUG_UART0_RX_PIN_MASK (1U << 2U)      /*!<@brief PORT pin mask */
-                                                               /* @} */
+#define BOARD_I20PINS_DEBUG_UART0_RX_PORT PORTB               /*!<@brief PORT peripheral base pointer */
+#define BOARD_I20PINS_DEBUG_UART0_RX_PIN 2U                   /*!<@brief PORT pin number */
+#define BOARD_I20PINS_DEBUG_UART0_RX_PIN_MASK (1U << 2U)      /*!<@brief PORT pin mask */
+                                                              /* @} */
+
+/*! @name PORTB3 (number 23), J7[10]/I2C0_SCL/UART0_TX
+  @{ */
+
+/* Symbols to be used with PORT driver */
+#define BOARD_I20PINS_ACCEL_SCL_PORT PORTB               /*!<@brief PORT peripheral base pointer */
+#define BOARD_I20PINS_ACCEL_SCL_PIN 3U                   /*!<@brief PORT pin number */
+#define BOARD_I20PINS_ACCEL_SCL_PIN_MASK (1U << 3U)      /*!<@brief PORT pin mask */
+                                                         /* @} */
+
+/*! @name PORTB4 (number 24), J7[9]/I2C0_SDA/UART0_RX
+  @{ */
+
+/* Symbols to be used with PORT driver */
+#define BOARD_I20PINS_ACCEL_SDA_PORT PORTB               /*!<@brief PORT peripheral base pointer */
+#define BOARD_I20PINS_ACCEL_SDA_PIN 4U                   /*!<@brief PORT pin number */
+#define BOARD_I20PINS_ACCEL_SDA_PIN_MASK (1U << 4U)      /*!<@brief PORT pin mask */
+                                                         /* @} */
 
 /*!
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
-void BOARD_InitPins(void);
+void BOARD_I20pins(void);
 
 /*! @name PORTB10 (number 13), J7[1]/LEDRGB_BLUE/ADC0_SE9
   @{ */

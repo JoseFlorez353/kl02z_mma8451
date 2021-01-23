@@ -124,7 +124,7 @@ int main(void) {
 					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
 							| (nuevo_dato_i2c_parteLSB ));		// (0001 0111) (0000 0101)
 
-					printf("el dato X es: %d \r\n ", Variable_Final);
+					printf("el dato X es: %d \r\n ", Variable_Final/2);
 
 					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,
 					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Y_MSB);
@@ -135,7 +135,7 @@ int main(void) {
 					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
 							| (nuevo_dato_i2c_parteLSB ));
 
-					printf("el dato Y es: %d \r\n ", Variable_Final);
+					printf("el dato Y es: %d \r\n ", Variable_Final/2);
 
 					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,
 					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Z_MSB);
@@ -146,7 +146,7 @@ int main(void) {
 					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
 							| (nuevo_dato_i2c_parteLSB ));
 
-					printf("el dato Z es: %d \r\n ", Variable_Final);
+					printf("el dato Z es: %d \r\n ", Variable_Final/2);
 
 				}
 			}

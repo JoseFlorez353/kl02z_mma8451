@@ -52,9 +52,10 @@ status_t i2c0MasterInit(uint32_t baud_rate) {
 	return(kStatus_Success);
 }
 /*--------------------------------------------*/
-status_t i2c0MasterReadByte(uint16_t *data, uint8_t device_address, int8_t memory_address) {
+status_t i2c0MasterReadByte(uint8_t *data, uint8_t device_address, int8_t memory_address) {
 	i2c_master_transfer_t masterXfer;
 	uint8_t i2c_rx_buffer[1];
+//	const uint8_t size = 1;
 
     masterXfer.slaveAddress = device_address;
     masterXfer.direction = kI2C_Read;
@@ -71,18 +72,29 @@ status_t i2c0MasterReadByte(uint16_t *data, uint8_t device_address, int8_t memor
     return(kStatus_Success);
 }
 /*--------------------------------------------*/
-status_t XX(uint8_t device_addr, uint8_t reg_addr, uint8_t value){
+
+status_t i2c0MasterWriteByte(uint8_t device_addr, uint8_t reg_addr, uint8_t value){
+
+	//i2c0MasterWriteByte(0x1D, 0x2A, 0x00);
+
+	//i2c0MasterWriteByte(0x1D, 0x0E, 0x01);
+
+	//i2c0MasterWriteByte(0x1D, 0x2A, 0x01);
+
+	//i2c0MasterReadByte(X_LSB, 0x1D, 0x02);
+
+
 
 //	/* subAddress = 0x01, data = g_master_txBuff - write to slave.
 //	 start + slaveaddress(w) + subAddress + length of data buffer + data buffer + stop*/
 	i2c_master_transfer_t masterXfer;
 	//uint8_t g_master_txBuff[1];
 
-	masterXfer.slaveAddress = device_addr;
+	masterXfer.slaveAddress = device_addr; //0x1D
 	masterXfer.direction = kI2C_Write;
-	masterXfer.subaddress = reg_addr;
+	masterXfer.subaddress = reg_addr; //0x2A
 	masterXfer.subaddressSize = 1;
-	masterXfer.data = &value;
+	masterXfer.data = &value; //0x00
 	masterXfer.dataSize = 1;
 	masterXfer.flags = kI2C_TransferDefaultFlag;
 //

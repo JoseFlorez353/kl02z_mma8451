@@ -25,7 +25,7 @@
             <processor_version>8.0.1</processor_version>
          </pins_profile>
          <functions_list>
-            <function name="MMA8451Pins">
+            <function name="BOARD_InitPins">
                <description>Configures pin routing and optionally pin electrical features.</description>
                <options>
                   <callFromInitBoot>true</callFromInitBoot>
@@ -33,27 +33,17 @@
                   <enableClock>true</enableClock>
                </options>
                <dependencies>
-                  <dependency resourceType="Peripheral" resourceId="UART0" description="Peripheral UART0 is not initialized" problem_level="1" source="Pins:MMA8451Pins">
+                  <dependency resourceType="Peripheral" resourceId="UART0" description="Peripheral UART0 is not initialized" problem_level="1" source="Pins:BOARD_InitPins">
                      <feature name="initialized" evaluation="equal">
                         <data>true</data>
                      </feature>
                   </dependency>
-                  <dependency resourceType="Peripheral" resourceId="I2C0" description="Peripheral I2C0 is not initialized" problem_level="1" source="Pins:MMA8451Pins">
-                     <feature name="initialized" evaluation="equal">
-                        <data>true</data>
-                     </feature>
-                  </dependency>
-                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:MMA8451Pins">
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
                      <feature name="enabled" evaluation="equal" configuration="core0">
                         <data>true</data>
                      </feature>
                   </dependency>
-                  <dependency resourceType="SWComponent" resourceId="platform.drivers.port" description="Pins initialization requires the PORT Driver in the project." problem_level="2" source="Pins:MMA8451Pins">
-                     <feature name="enabled" evaluation="equal" configuration="core0">
-                        <data>true</data>
-                     </feature>
-                  </dependency>
-                  <dependency resourceType="SWComponent" resourceId="platform.drivers.gpio" description="Pins initialization requires the GPIO Driver in the project." problem_level="2" source="Pins:MMA8451Pins">
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.port" description="Pins initialization requires the PORT Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
                      <feature name="enabled" evaluation="equal" configuration="core0">
                         <data>true</data>
                      </feature>
@@ -62,15 +52,6 @@
                <pins>
                   <pin peripheral="UART0" signal="TX" pin_num="17" pin_signal="ADC0_SE5/CMP0_IN3/PTB1/IRQ_6/UART0_TX/UART0_RX"/>
                   <pin peripheral="UART0" signal="RX" pin_num="18" pin_signal="ADC0_SE4/PTB2/IRQ_7/UART0_RX/UART0_TX"/>
-                  <pin peripheral="I2C0" signal="SCL" pin_num="23" pin_signal="PTB3/IRQ_10/I2C0_SCL/UART0_TX"/>
-                  <pin peripheral="I2C0" signal="SDA" pin_num="24" pin_signal="PTB4/IRQ_11/I2C0_SDA/UART0_RX"/>
-                  <pin peripheral="GPIOA" signal="GPIO, 10" pin_num="21" pin_signal="PTA10/IRQ_8">
-                     <pin_features>
-                        <pin_feature name="direction" value="INPUT"/>
-                        <pin_feature name="pull_select" value="up"/>
-                        <pin_feature name="pull_enable" value="enable"/>
-                     </pin_features>
-                  </pin>
                </pins>
             </function>
             <function name="LEDS_CONFIGURACI">
@@ -114,6 +95,69 @@
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
                         <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+               </pins>
+            </function>
+            <function name="BOAR_I2C_ConfigPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>true</callFromInitBoot>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="I2C0" description="Peripheral I2C0 is not initialized" problem_level="1" source="Pins:BOAR_I2C_ConfigPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOAR_I2C_ConfigPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.port" description="Pins initialization requires the PORT Driver in the project." problem_level="2" source="Pins:BOAR_I2C_ConfigPins">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="I2C0" signal="SCL" pin_num="23" pin_signal="PTB3/IRQ_10/I2C0_SCL/UART0_TX"/>
+                  <pin peripheral="I2C0" signal="SDA" pin_num="24" pin_signal="PTB4/IRQ_11/I2C0_SDA/UART0_RX"/>
+               </pins>
+            </function>
+            <function name="BOARD_GPIO_MMA8451Pin">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>true</callFromInitBoot>
+                  <coreID>core0</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_GPIO_MMA8451Pin">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.port" description="Pins initialization requires the PORT Driver in the project." problem_level="2" source="Pins:BOARD_GPIO_MMA8451Pin">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.gpio" description="Pins initialization requires the GPIO Driver in the project." problem_level="2" source="Pins:BOARD_GPIO_MMA8451Pin">
+                     <feature name="enabled" evaluation="equal" configuration="core0">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="GPIOA" signal="GPIO, 10" pin_num="21" pin_signal="PTA10/IRQ_8">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="pull_select" value="up"/>
+                        <pin_feature name="pull_enable" value="enable"/>
                      </pin_features>
                   </pin>
                </pins>

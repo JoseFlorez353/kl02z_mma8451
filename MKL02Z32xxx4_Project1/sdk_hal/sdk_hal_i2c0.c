@@ -38,6 +38,7 @@
 
 /*******************************************************************************
  * Public Source Code
+ *
  ******************************************************************************/
  /*--------------------------------------------*/
 status_t i2c0MasterInit(uint32_t baud_rate) {
@@ -70,7 +71,7 @@ status_t i2c0MasterReadByte(uint16_t *data, uint8_t device_address, int8_t memor
     return(kStatus_Success);
 }
 /*--------------------------------------------*/
-status_t i2c0MasterWriteByte(uint8_t device_addr, uint8_t reg_addr, uint8_t value){
+status_t XX(uint8_t device_addr, uint8_t reg_addr, uint8_t value){
 
 //	/* subAddress = 0x01, data = g_master_txBuff - write to slave.
 //	 start + slaveaddress(w) + subAddress + length of data buffer + data buffer + stop*/
@@ -91,3 +92,4 @@ status_t i2c0MasterWriteByte(uint8_t device_addr, uint8_t reg_addr, uint8_t valu
 
 	return(kStatus_Success);
 }
+

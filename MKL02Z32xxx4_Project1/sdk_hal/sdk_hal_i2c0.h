@@ -69,6 +69,7 @@ status_t i2c0MasterWriteByte(uint8_t device_addr, uint8_t reg_addr, uint8_t valu
 
 
 
+
 /** @} */ // end of I2C0 group
 /** @} */ // end of HAL group
 

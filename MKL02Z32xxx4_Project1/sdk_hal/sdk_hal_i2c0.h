@@ -1,5 +1,5 @@
 /*! @file : sdk_hal_i2c0.h
- * @author  Ernesto Andres Rincon Cruz
+ * @author  Jose Alberto Florez Martinez
  * @version 1.0.0
  * @date    11/01/2021
  * @brief   Driver for I2C0

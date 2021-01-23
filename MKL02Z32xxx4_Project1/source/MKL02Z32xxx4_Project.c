@@ -1,14 +1,3 @@
-/*! @file : main.c
- * @author  Ernesto Andres Rincon Cruz
- * @version 1.0.0
- * @date    16/01/2021
- * @brief   Archivo principal
- * @details
- *
-*/
-/*******************************************************************************
- * Includes
- ******************************************************************************/
 #include <stdio.h>
 #include "board.h"
 #include "peripherals.h"
@@ -27,6 +16,13 @@
 #define MMA851_I2C_DEVICE_ADDRESS	0x1D
 
 #define MMA8451_WHO_AM_I_MEMORY_ADDRESS		0x0D
+#define MMA8451_OUT_X_MSB   0x01
+#define MMA8451_OUT_X_LSB  0x02
+
+#define MMA8451_OUT_Y_MSB   0x03
+#define MMA8451_OUT_Y_LSB  0x04
+#define MMA8451_OUT_Z_MSB   0x05
+#define MMA8451_OUT_Z_LSB  0x06
 
 /*******************************************************************************
  * Private Prototypes
@@ -55,6 +51,10 @@ int main(void) {
 	status_t status;
 	uint8_t nuevo_byte_uart;
 	uint8_t	nuevo_dato_i2c;
+	uint8_t nuevo_dato_i2c_parteMSB;
+    uint8_t nuevo_dato_i2c_parteLSB;
+    int16_t Variable_Final ;
+
 
   	/* Init board hardware. */
     BOARD_InitBootPins();
@@ -101,20 +101,58 @@ int main(void) {
 					break;
 
 				case 'M':
-					i2c0MasterReadByte(&nuevo_dato_i2c, MMA851_I2C_DEVICE_ADDRESS, MMA8451_WHO_AM_I_MEMORY_ADDRESS);
+		            i2c0MasterReadByte(&nuevo_dato_i2c, MMA851_I2C_DEVICE_ADDRESS, MMA8451_WHO_AM_I_MEMORY_ADDRESS);
 
-					if(nuevo_dato_i2c==0x1A)
-						printf("MMA8451 encontrado!!\r\n");
-					else
-						printf("MMA8451 error\r\n");
+					if(nuevo_dato_i2c==0x1A);
+//				i2c0MasterWriteByte(0x01D, 0x2A,0x0D);
+					printf("MMA8451 encontrado!!\r\n");
 
-					break;
+				case 'x':
+				case 'X':
+					i2c0MasterWriteByte(MMA851_I2C_DEVICE_ADDRESS, 0x2A, 0x00);
+
+					i2c0MasterWriteByte(MMA851_I2C_DEVICE_ADDRESS, 0x0E, 0x01);
+
+					i2c0MasterWriteByte(MMA851_I2C_DEVICE_ADDRESS, 0x2A, 0x01);
+
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,
+					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_X_MSB);
+
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,
+					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_X_LSB);
+
+					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
+							| (nuevo_dato_i2c_parteLSB ));		// (0001 0111) (0000 0101)
+
+					printf("el dato X es: %d \r\n ", Variable_Final);
+
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,
+					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Y_MSB);
+
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,
+					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Y_LSB);
+
+					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
+							| (nuevo_dato_i2c_parteLSB ));
+
+					printf("el dato Y es: %d \r\n ", Variable_Final);
+
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,
+					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Z_MSB);
+
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,
+					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Z_LSB);
+
+					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
+							| (nuevo_dato_i2c_parteLSB ));
+
+					printf("el dato Z es: %d \r\n ", Variable_Final);
+
 				}
-    		}else{
-    			printf("error\r\n");
-    		}
-    	}
-    }
+			}
+		}
 
-    return 0 ;
+	}
+	return 0;
 }
+

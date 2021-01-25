@@ -115,38 +115,29 @@ int main(void) {
 
 					i2c0MasterWriteByte(MMA851_I2C_DEVICE_ADDRESS, 0x2A, 0x01);
 
-					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,
-					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_X_MSB);
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_X_MSB);//Para X
 
-					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,
-					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_X_LSB);
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_X_LSB);
 
-					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
-							| (nuevo_dato_i2c_parteLSB ));		// (0001 0111) (0000 0101)
+					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) | (nuevo_dato_i2c_parteLSB ));
 
-					printf("el dato X es: %d \r\n ", Variable_Final/2);
+					printf("el dato X es: %d \r\n ", Variable_Final);
 
-					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,
-					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Y_MSB);
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Y_MSB);//Para Y
 
-					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,
-					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Y_LSB);
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Y_LSB);
 
-					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
-							| (nuevo_dato_i2c_parteLSB ));
+					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) | (nuevo_dato_i2c_parteLSB ));
 
-					printf("el dato Y es: %d \r\n ", Variable_Final/2);
+					printf("el dato Y es: %d \r\n ", Variable_Final);
 
-					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,
-					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Z_MSB);
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteMSB,MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Z_MSB);//Para Z
 
-					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,
-					MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Z_LSB);
+					i2c0MasterReadByte(&nuevo_dato_i2c_parteLSB,MMA851_I2C_DEVICE_ADDRESS, MMA8451_OUT_Z_LSB);
 
-					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) // (1111 1111) (1100 0000)
-							| (nuevo_dato_i2c_parteLSB ));
+					Variable_Final = (int16_t)((nuevo_dato_i2c_parteMSB << 8) | (nuevo_dato_i2c_parteLSB ));
 
-					printf("el dato Z es: %d \r\n ", Variable_Final/2);
+					printf("el dato Z es: %d \r\n ", Variable_Final);
 
 				}
 			}

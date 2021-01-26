@@ -57,7 +57,7 @@ int main(void) {
 
 
   	/* Init board hardware. */
-    BOARD_InitBootPins();
+   BOARD_InitBootPins();
     BOARD_InitBootClocks();
     BOARD_InitBootPeripherals();
 #ifndef BOARD_INIT_DEBUG_CONSOLE_PERIPHERAL
@@ -68,10 +68,14 @@ int main(void) {
     (void)uart0Inicializar(115200);	//115200bps
     (void)i2c0MasterInit(100000);	//100kbps
 
-    PRINTF("Usar teclado para controlar LEDs\r\n");
-    PRINTF("r-R led ROJO\r\n");
-    PRINTF("v-V led VERDE\r\n");
-    PRINTF("a-A led AZUL\r\n");
+    PRINTF("Bienvenido a FRDM_KL02Z\r\n");
+    PRINTF("Presione alguna de las teclas para las siguientes opciones:\r\n");
+    PRINTF("R: Enciender led Rojo\r\n");
+    PRINTF("r: Apagar led Rojo\r\n");
+    PRINTF("V: Encender led Verde\r\n");
+    PRINTF("v: Apagar led Verde\r\n");
+    PRINTF("A: Encender Led Azul\r\n");
+    PRINTF("a: Apagar led Azul\r\n");
     PRINTF("M buscar acelerometro\r\n");
 
 
